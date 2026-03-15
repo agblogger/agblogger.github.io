@@ -7,7 +7,7 @@ nav_order: 3
 # Sync Tool
 {: .no_toc }
 
-The AgBlogger sync tool lets you write and manage your posts as ordinary text files on your computer. Whenever you're ready to publish, one command pushes your changes to your blog — and pulls down anything you wrote via the web.
+The AgBlogger sync tool lets you write and manage your posts as Markdown files on your computer. Whenever you're ready to publish, one command pushes your changes to your blog — and pulls down anything you wrote via the web.
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -21,7 +21,7 @@ The AgBlogger sync tool lets you write and manage your posts as ordinary text fi
 
 - **Write offline** — draft posts in your favourite text editor without needing an internet connection
 - **Keep a local backup** — your posts live as real files on your hard drive, not just on a remote server
-- **Use any editor** — Obsidian, iA Writer, VS Code, Notepad — anything that saves plain text files works
+- **Use any editor** — Obsidian, iA Writer, VS Code, Notepad — anything that can edit `.md` files works
 
 ---
 
@@ -47,7 +47,32 @@ Replace `~/blog` with any folder you'd like to use, and `https://your-server.com
 
 **1. Write a post**
 
-Create or edit a `.md` file in your posts folder using any text editor.
+Create or edit a `.md` file in your posts folder using any text editor. Here's what a simple post looks like:
+
+```markdown
+# My First Post
+
+Today I tried a new recipe and it turned out great.
+
+You can use **bold**, *italics*, and other Markdown formatting.
+```
+
+You can also add optional details at the top of the file (called "front matter") to set tags or mark a post as a draft:
+
+```markdown
+---
+labels:
+  - "#cooking"
+  - "#recipes"
+draft: true
+---
+
+# My First Post
+
+Today I tried a new recipe...
+```
+
+The title is taken from the first heading, and dates are filled in automatically when you sync.
 
 **2. Check what's changed**
 
@@ -81,4 +106,4 @@ If you edit a post on your computer and also edit it via the web before syncing,
 
 ## Signing in
 
-The first time you run a command, you'll be prompted for your username and password. Your session is saved securely, so you won't need to sign in again.
+The first time you run a command, you'll be prompted for your username and password. Your login is saved locally, so you won't need to sign in again.

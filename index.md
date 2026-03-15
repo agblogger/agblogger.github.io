@@ -8,13 +8,13 @@ nav_order: 1
 
 **Your blog. Your words. Your control.**
 
-AgBlogger is a blogging platform you host yourself. Write posts in any text editor, organize them with tags, share them to social media, and keep everything backed up on your own terms — no subscription fees, no algorithm deciding who sees your work.
+AgBlogger is a blogging platform you host yourself. Write posts in Markdown — a simple, readable format for text — organize them with tags, share them to social media, and keep everything backed up on your own terms. No subscription fees, no algorithm deciding who sees your work.
 
 ---
 
 ## What you can do with AgBlogger
 
-- **Write in plain text** — posts are simple text files you can create in any app, from Notepad to VS Code. No proprietary format to learn.
+- **Write in Markdown** — Markdown is a way to format text using plain characters like `**bold**` and `# Heading`. Posts are `.md` files you can create in any text editor, from Notepad to VS Code.
 - **Organize with tags** — group your posts with labels and browse them in a visual tag map.
 - **Share to social media** — publish a post to Bluesky, Mastodon, X (Twitter), and Facebook in one click.
 - **Search everything** — find any post instantly by searching its title, content, or tags.
@@ -28,7 +28,7 @@ AgBlogger is a blogging platform you host yourself. Write posts in any text edit
 AgBlogger has two parts:
 
 1. **The web app** — a website you open in your browser to read, write, and manage your posts. You can use it from any device.
-2. **The sync tool** (optional) — a small program you install on your computer that keeps a folder of text files in sync with your blog. Great if you prefer writing offline or want a local backup.
+2. **The sync tool** (optional) — a small program you install on your computer that keeps a folder of Markdown files in sync with your blog. Great if you prefer writing offline or want a local backup.
 
 ---
 

@@ -23,15 +23,17 @@ You'll also need:
 
 - A **domain name** (e.g. `myblog.com`) pointing at your server — optional, but recommended for a clean web address
 - **Docker** installed on the server — Docker is a tool that packages AgBlogger and everything it needs into a neat bundle; [installation instructions are on the Docker website](https://docs.docker.com/engine/install/)
-- The AgBlogger files downloaded to your server:
+- The AgBlogger files downloaded to your server
+
+{: .note }
+Not sure about any of this? Ask a technically minded friend or hire a sysadmin to do the one-time setup. Once it's running, you won't need their help to write posts.
+
+To download the files, run these commands on the server:
 
 ```bash
 git clone https://github.com/agblogger/agblogger
 cd agblogger
 ```
-
-{: .note }
-Not sure about any of this? Ask a technically minded friend or hire a sysadmin to do the one-time setup. Once it's running, you won't need their help to write posts.
 
 ---
 
@@ -51,7 +53,7 @@ The wizard will ask you for:
 | Admin display name | Your name as it appears on the blog |
 | Admin password | A strong password for your account (at least 8 characters) |
 | Your domain name | e.g. `myblog.com` (leave blank for local-only access) |
-| Email address | Used to receive TLS certificate notices (optional but recommended) |
+| Email address | For TLS certificate notices — only asked if you enter a domain name (optional but recommended) |
 
 When it's done, start your blog:
 
@@ -67,7 +69,7 @@ Your blog is now running. Visit `https://your-domain/login` (or `http://localhos
 
 After the server starts, open your blog's address in a browser and sign in with the admin credentials you set during setup.
 
-If you ever forget your password, you can reset it by stopping the server and restarting it — the admin account is recreated from the credentials you originally configured.
+If you ever forget your password, ask whoever manages your server for help — they can reset it by updating the admin password in the server's configuration file (`.env.production`) and recreating the admin account.
 
 ---
 
@@ -88,3 +90,27 @@ docker compose --env-file .env.production down
 # Start it back up
 docker compose --env-file .env.production up -d
 ```
+
+---
+
+## Updating AgBlogger
+
+To update AgBlogger to the latest version, run these commands on the server from the `agblogger` directory:
+
+```bash
+git pull
+docker compose --env-file .env.production up -d --build
+```
+
+This downloads the latest code, rebuilds the application, and restarts it. Your posts and settings are preserved.
+
+---
+
+## What's next?
+
+Your blog is up and running. Here's what you can do now:
+
+- **Write your first post** — log in and start writing from the web interface
+- **[Set up the sync tool]({% link sync-cli.md %})** — write posts offline from your computer and sync them to your blog
+- **[Connect social accounts]({% link cross-posting.md %})** — share posts to Bluesky, Mastodon, X, and Facebook
+- **Invite other writers** — create invite codes from the admin panel so others can join your blog
