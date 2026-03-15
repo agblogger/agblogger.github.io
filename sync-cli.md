@@ -26,10 +26,10 @@ Download the `agblogger` program for your operating system from the [releases pa
 Initialize a local directory and link it to your server:
 
 ```bash
-agblogger --dir ~/blog --server https://your-server.com init
+agblogger init --dir ~/blog --server https://your-server.com
 ```
 
-You'll be prompted to log in. Your credentials are saved locally so you only need to authenticate once.
+You'll be prompted to log in.
 
 ---
 
@@ -38,16 +38,27 @@ You'll be prompted to log in. Your credentials are saved locally so you only nee
 Write or edit `.md` files in the `posts/` folder, then:
 
 ```bash
-agblogger --dir ~/blog status          # preview what will change
-agblogger --dir ~/blog sync            # push local changes, pull remote changes
-agblogger --dir ~/blog sync --yes      # skip confirmation prompt
+agblogger status --dir ~/blog          # preview what will change
+agblogger sync --dir ~/blog            # push local changes, pull remote changes
+agblogger sync --dir ~/blog --yes      # skip confirmation prompt
 ```
 
 ---
 
 ## Post format
 
-Posts are Markdown files with optional front matter at the top:
+Each post lives in its own directory inside `posts/`. The directory contains an `index.md` file and any images or other files that belong to the post:
+
+```text
+posts/
+└── 2026-03-01-example-post/
+    ├── index.md
+    └── diagram.png
+```
+
+Images and other files placed next to `index.md` are uploaded with the post on sync, so you can reference them directly in your Markdown (e.g. `![](diagram.png)`).
+
+The `index.md` file is a Markdown file with optional front matter at the top:
 
 ```markdown
 ---
@@ -61,7 +72,7 @@ draft: true
 Post content here.
 ```
 
-Only the body is required. If `title` is omitted, it's extracted from the first `# heading` (or derived from the filename). Dates are filled in automatically on sync.
+Only the body is required. If `title` is omitted, it's extracted from the first `# heading` (or derived from the directory name). Dates are filled in automatically on sync.
 
 You can also set `author`, `created_at`, and `modified_at` in the front matter, but these are typically managed by the server.
 
@@ -69,12 +80,12 @@ You can also set `author`, `created_at`, and `modified_at` in the front matter, 
 
 ## Conflict handling
 
-If the same post is edited both locally and via the web between syncs, the sync tool flags the conflict in its output. A `.conflict-backup` copy is saved so you can compare versions and resolve manually before syncing again.
+When the same post is edited both locally and on the web between syncs, the sync tool performs a three-way merge — comparing your local version, the server version, and the last-synced common ancestor. Most of the time this merge succeeds automatically and no action is needed.
+
+A conflict only occurs when the automatic merge fails (for example, when both sides changed the same paragraph). In that case the sync tool overrides the local file with server version, prints a warning, and saves the local file to `.backups` folder.
 
 ---
 
 ## Authentication
 
-The first time you run a command, you'll be prompted for your username and password. Your login is saved locally so you won't need to sign in again.
-
-You can also authenticate with a Personal Access Token via the `--pat` flag or `AGBLOGGER_PAT` environment variable.
+When run a command, you'll be prompted for your username and password. You can also authenticate with a Personal Access Token via the `--pat` flag or `AGBLOGGER_PAT` environment variable.

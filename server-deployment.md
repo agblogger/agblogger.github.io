@@ -17,10 +17,10 @@ nav_order: 2
 
 ## Prerequisites
 
-- A Linux server (VPS from DigitalOcean, Hetzner, Linode, etc.)
+- A Linux server
 - [Docker](https://docs.docker.com/engine/install/) and Docker Compose
 - [just](https://github.com/casey/just) command runner
-- A domain name pointing at your server (optional)
+- A domain name pointing at your server
 
 ---
 
@@ -42,7 +42,7 @@ Start the server after the wizard completes:
 docker compose --env-file .env.production up -d
 ```
 
-Visit `https://your-domain` (or `http://localhost`) and log in.
+Visit `https://your-domain` and log in.
 
 ---
 
@@ -72,6 +72,6 @@ Your posts and settings are preserved across updates.
 
 ## Password reset
 
-The admin account is created on first startup from the credentials in `.env.production`. Restarting the server does **not** reset the password.
+The admin account is created on first startup from the credentials in `.env.production`. Restarting the server does not reset the password.
 
 To reset a forgotten admin password: update `ADMIN_PASSWORD` in `.env.production`, delete the admin user from the database, and restart the server.

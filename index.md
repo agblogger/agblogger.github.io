@@ -6,7 +6,18 @@ nav_order: 1
 
 # AgBlogger
 
-A self-hosted, Markdown-first blogging platform. Write in any editor, organize with labels, cross-post to social media, and sync between your computer and server.
+A self-hosted, Markdown-first blogging platform. Write in any editor, organize with labels, cross-post to social media, and synchronize between your computer and server.
+
+---
+
+## Features
+
+- **Write in Markdown** — posts are `.md` files you can create in any text editor. Markdown is a way to format text using plain characters like `**bold**` and `# Heading`. The Web interface provides a convenient Markdown editor with instant preview.
+- **Organize with labels** — group your posts with labels and browse them in a visual label map.
+- **Share to social media** — publish a post to Bluesky, Mastodon, X (Twitter), and Facebook in one click.
+- **Search everything** — find any post instantly by searching its title, content, or labels.
+- **Sync from your computer** — keep a folder on your computer in sync with your blog, so you always have a local backup.
+- **Invite collaborators** — share your blog with other writers using invite codes.
 
 ---
 
@@ -14,7 +25,7 @@ A self-hosted, Markdown-first blogging platform. Write in any editor, organize w
 
 ### Deploy
 
-Requirements: a Linux server with [Docker](https://docs.docker.com/engine/install/) and [just](https://github.com/casey/just) installed. A domain name is optional.
+Requirements: a Linux server with [Docker](https://docs.docker.com/engine/install/) and [just](https://github.com/casey/just) installed.
 
 ```bash
 git clone https://github.com/agblogger/agblogger
@@ -23,7 +34,7 @@ just deploy                                      # interactive setup wizard
 docker compose --env-file .env.production up -d   # start the server
 ```
 
-Your blog is live at `https://your-domain` (or `http://localhost` without a domain). Log in with the admin credentials you set during setup.
+Your blog is live at `https://your-domain`. Log in with the admin credentials you provided during setup.
 
 See the [deployment guide]({% link server-deployment.md %}) for Docker management, updates, and password resets.
 
@@ -32,10 +43,10 @@ See the [deployment guide]({% link server-deployment.md %}) for Docker managemen
 The sync tool keeps a local folder of Markdown files in sync with your blog. Download it from the [releases page](https://github.com/agblogger/agblogger/releases).
 
 ```bash
-agblogger --dir ~/blog --server https://your-server.com init   # one-time setup
+agblogger init --dir ~/blog --server https://your-server.com   # one-time setup
 ```
 
-Write posts as `.md` files in the `posts/` folder:
+Write posts as `index.md` files in dedicated post folders inside the `posts/` folder, e.g., in `posts/2026-03-11-my-first-post/index.md`:
 
 ```markdown
 ---
@@ -52,8 +63,8 @@ Dates are filled in automatically on sync.
 Then sync:
 
 ```bash
-agblogger --dir ~/blog status   # preview changes
-agblogger --dir ~/blog sync     # push and pull
+agblogger status --dir ~/blog   # preview changes
+agblogger sync --dir ~/blog     # push and pull
 ```
 
 See the [sync tool guide]({% link sync-cli.md %}) for post format details, conflict handling, and authentication.
@@ -61,14 +72,3 @@ See the [sync tool guide]({% link sync-cli.md %}) for post format details, confl
 ### Cross-posting
 
 Connect social accounts under **Admin → Social** in the web UI, then cross-post from any published post's editor. See the [cross-posting guide]({% link cross-posting.md %}).
-
----
-
-## Features
-
-- **Write in Markdown** — posts are `.md` files you can create in any text editor, from Notepad to VS Code. Markdown is a way to format text using plain characters like `**bold**` and `# Heading`.
-- **Organize with labels** — group your posts with labels and browse them in a visual label map.
-- **Share to social media** — publish a post to Bluesky, Mastodon, X (Twitter), and Facebook in one click.
-- **Search everything** — find any post instantly by searching its title, content, or labels.
-- **Sync from your computer** — keep a folder on your computer in sync with your blog, so you always have a local backup. Works offline.
-- **Invite collaborators** — share your blog with other writers using invite codes.
