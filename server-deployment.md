@@ -17,16 +17,13 @@ nav_order: 2
 
 ## Before you begin
 
-Setting up AgBlogger requires a server — a computer that stays on and connected to the internet so your blog is always accessible. Most people use a cheap cloud server (a "VPS") from a provider like DigitalOcean, Hetzner, or Linode, which typically costs a few dollars a month.
+Setting up AgBlogger requires a server. Most people use a cheap cloud server (a VPS) from a provider like DigitalOcean, Hetzner, or Linode, which typically costs a few dollars a month.
 
 You'll also need:
 
-- A **domain name** (e.g. `myblog.com`) pointing at your server — optional, but recommended for a clean web address
-- **Docker** installed on the server — Docker is a tool that packages AgBlogger and everything it needs into a neat bundle; [installation instructions are on the Docker website](https://docs.docker.com/engine/install/)
-- The AgBlogger files downloaded to your server
-
-{: .note }
-Not sure about any of this? Ask a technically minded friend or hire a sysadmin to do the one-time setup. Once it's running, you won't need their help to write posts.
+- A **domain name** (e.g. `myblog.com`) pointing at your server
+- **Docker** installed on the server
+- The AgBlogger source repository
 
 To download the files, run these commands on the server:
 
