@@ -6,52 +6,38 @@ nav_order: 1
 
 # AgBlogger
 
-**A markdown-first blogging platform.**
+**Your blog. Your words. Your control.**
 
-AgBlogger is a self-hosted blogging platform built around plain markdown files. Posts live on disk as YAML front matter + markdown — your editor, your git history, your control. A lightweight FastAPI backend and React frontend add search, labels, cross-posting, and a web UI on top without replacing the files as the source of truth.
-
----
-
-## Features
-
-- **Markdown-first** — posts are `.md` files in a `content/posts/` directory; the database is a read-through cache, not the master copy
-- **Bidirectional sync** — a SHA-256 hash-based three-way merge engine keeps a local directory and a remote server in sync via the `agblogger` CLI
-- **Label DAG** — hierarchical labels form a directed acyclic graph with an interactive visualisation in the UI
-- **Cross-posting** — publish simultaneously to Bluesky, Mastodon, X, and Facebook
-- **Full-text search** — SQLite FTS5 index over post content and metadata
-- **Hardened auth** — HttpOnly cookie sessions for the web UI; Personal Access Tokens (PAT) for the CLI and API
+AgBlogger is a blogging platform you host yourself. Write posts in any text editor, organize them with tags, share them to social media, and keep everything backed up on your own terms — no subscription fees, no algorithm deciding who sees your work.
 
 ---
 
-## Deploy the server
+## What you can do with AgBlogger
 
-Requires Docker, `just`, and the cloned repo.
-
-```bash
-git clone https://github.com/agblogger/agblogger && cd agblogger
-just deploy   # interactive wizard: sets admin credentials, domain, HTTPS
-docker compose --env-file .env.production up -d
-```
-
-Then open `https://<your-domain>/login` and sign in with the credentials you chose.
-
-[Full deployment guide →]({% link server-deployment.md %})
+- **Write in plain text** — posts are simple text files you can create in any app, from Notepad to VS Code. No proprietary format to learn.
+- **Organize with tags** — group your posts with labels and browse them in a visual tag map.
+- **Share to social media** — publish a post to Bluesky, Mastodon, X (Twitter), and Facebook in one click.
+- **Search everything** — find any post instantly by searching its title, content, or tags.
+- **Invite collaborators** — share your blog with other writers using invite codes.
+- **Sync from your computer** — use the optional desktop sync tool to keep a folder on your computer in sync with your blog, so you always have a local backup.
 
 ---
 
-## Sync posts with the CLI
+## How it works
 
-```bash
-# One-time setup: point the CLI at your server and local content directory
-agblogger --dir ~/blog --server https://your-server.com init
+AgBlogger has two parts:
 
-# Preview changes without touching anything
-agblogger --dir ~/blog status
+1. **The web app** — a website you open in your browser to read, write, and manage your posts. You can use it from any device.
+2. **The sync tool** (optional) — a small program you install on your computer that keeps a folder of text files in sync with your blog. Great if you prefer writing offline or want a local backup.
 
-# Push local edits and pull remote changes
-agblogger --dir ~/blog sync
-```
+---
 
-The sync engine uses SHA-256 hashes for a three-way merge. On conflict the server version wins; your local copy is saved as `<file>.conflict-backup`.
+## Getting started
 
-[Full CLI reference →]({% link sync-cli.md %})
+First, you (or someone technical you trust) sets up the server — this is a one-time process that gives you your own private blog at a web address of your choosing.
+
+[Set up the server →]({% link server-deployment.md %})
+
+Once the server is running, you can log in and start writing immediately. If you also want to write from your computer and sync posts automatically, install the sync tool.
+
+[Use the sync tool →]({% link sync-cli.md %})
