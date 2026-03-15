@@ -6,13 +6,13 @@ nav_order: 1
 
 # AgBlogger
 
-**A markdown-first blogging platform with bidirectional sync.**
+**A markdown-first blogging platform.**
 
 AgBlogger is a self-hosted blogging platform built around plain markdown files. Posts live on disk as YAML front matter + markdown — your editor, your git history, your control. A lightweight FastAPI backend and React frontend add search, labels, cross-posting, and a web UI on top without replacing the files as the source of truth.
 
 ---
 
-## Key features
+## Features
 
 - **Markdown-first** — posts are `.md` files in a `content/posts/` directory; the database is a read-through cache, not the master copy
 - **Bidirectional sync** — a SHA-256 hash-based three-way merge engine keeps a local directory and a remote server in sync via the `agblogger` CLI
@@ -21,19 +21,11 @@ AgBlogger is a self-hosted blogging platform built around plain markdown files. 
 - **Full-text search** — SQLite FTS5 index over post content and metadata
 - **Hardened auth** — HttpOnly cookie sessions for the web UI; Personal Access Tokens (PAT) for the CLI and API
 
-## Tech stack
-
-| Layer | Technology |
-|---|---|
-| Backend | Python 3.14+, FastAPI, SQLAlchemy 2.0, SQLite (WAL mode), Pandoc |
-| Frontend | React 19, TypeScript, Vite, TailwindCSS 4, Zustand, React Flow |
-| Infrastructure | Docker, Caddy (automatic HTTPS), `uv` |
-
 ---
 
 ## Deploy the server
 
-Requires Docker, `just`, and the repo cloned on your host.
+Requires Docker, `just`, and the cloned repo.
 
 ```bash
 git clone https://github.com/agblogger/agblogger && cd agblogger
