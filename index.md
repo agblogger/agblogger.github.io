@@ -25,18 +25,25 @@ A self-hosted, Markdown-first blogging platform. Write in any editor, organize w
 
 ### Deploy
 
-Requirements: a Linux server with [Docker](https://docs.docker.com/engine/install/) and [just](https://github.com/casey/just) installed.
+Requirements: [just](https://github.com/casey/just) and [uv](https://docs.astral.sh/uv/) on your computer, [Docker](https://docs.docker.com/engine/install/) on your server.
 
 ```bash
 git clone https://github.com/agblogger/agblogger
 cd agblogger
-just deploy                                      # interactive setup wizard
-docker compose --env-file .env.production up -d   # start the server
+just deploy                                        # interactive setup wizard
+scp -r dist/deploy/ user@your-server:~/agblogger   # copy bundle to server
+```
+
+Then on the server:
+
+```bash
+cd ~/agblogger
+bash setup.sh    # starts everything, including HTTPS
 ```
 
 Your blog is live at `https://your-domain`. Log in with the admin credentials you provided during setup.
 
-See the [deployment guide]({% link server-deployment.md %}) for Docker management, updates, and password resets.
+See the [deployment guide]({% link server-deployment.md %}) for managing the server, updates, and alternative deployment methods.
 
 ### Sync tool
 
