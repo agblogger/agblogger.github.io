@@ -12,7 +12,7 @@ A self-hosted, Markdown-first blogging platform. Write in any editor, organize w
 
 ## Features
 
-- **Write in Markdown** — posts are `.md` files you can create in any text editor. Markdown is a way to format text using plain characters like `**bold**` and `# Heading`. The Web interface provides a convenient Markdown editor with instant preview.
+- **Write in Markdown** — posts are Markdown `.md` files you can create in any text editor. AgBlogger provides a convenient Web editor with instant preview.
 - **Organize with labels** — group your posts with labels and browse them in a visual label map.
 - **Share to social media** — publish a post to Bluesky, Mastodon, X (Twitter), and Facebook in one click.
 - **Search everything** — find any post instantly by searching its title, content, or labels.

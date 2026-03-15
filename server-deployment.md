@@ -63,7 +63,7 @@ When the wizard finishes, it creates a `dist/deploy/` folder containing:
 - `.env.production` — your credentials and configuration
 - Docker Compose files
 - `setup.sh` — a script that sets everything up on the server
-- A `DEPLOY-REMOTE.md` with server-side management commands
+- A `DEPLOY-REMOTE.md` with server management info
 
 ---
 

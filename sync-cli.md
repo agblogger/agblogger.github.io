@@ -82,10 +82,10 @@ You can also set `author`, `created_at`, and `modified_at` in the front matter, 
 
 When the same post is edited both locally and on the web between syncs, the sync tool performs a three-way merge — comparing your local version, the server version, and the last-synced common ancestor. Most of the time this merge succeeds automatically and no action is needed.
 
-A conflict only occurs when the automatic merge fails (for example, when both sides changed the same paragraph). In that case the sync tool overrides the local file with server version, prints a warning, and saves the local file to `.backups` folder.
+A conflict only occurs when the automatic merge fails (for example, when both sides changed the same paragraph). In that case the sync tool overrides the local file with server version, prints a warning, and saves the local file to the `.backups` folder.
 
 ---
 
 ## Authentication
 
-When run a command, you'll be prompted for your username and password. You can also authenticate with a Personal Access Token via the `--pat` flag or `AGBLOGGER_PAT` environment variable.
+When you run a command, you'll be prompted for your username and password. You can also authenticate with a Personal Access Token via the `--pat` flag or `AGBLOGGER_PAT` environment variable.
