@@ -32,7 +32,7 @@ You run an interactive setup wizard on your computer. The wizard asks for your a
 **On your server:**
 
 - Linux
-- [Docker](https://docs.docker.com/engine/install/) and Docker Compose
+- [Docker](https://docs.docker.com/engine/install/) with Docker Compose V2 (the `docker compose` subcommand)
 - A domain name pointing at the server (optional, but needed for HTTPS)
 
 ---
@@ -51,12 +51,14 @@ The wizard prompts you for:
 
 | Prompt | Details |
 |---|---|
-| Deployment mode | Choose **registry** (pull from container registry) or **tarball** (ship as a file) |
 | Admin username | The username you'll log in with |
 | Admin display name | Your name as it appears on the blog |
-| Admin password | A strong password (at least 8 characters) |
-| Domain name | e.g. `myblog.com` — leave blank for local-only access |
-| Email address | For TLS certificate notices — only prompted if a domain is set |
+| Admin password | A strong password |
+| Deployment mode | Choose **registry** (pull from container registry) or **tarball** (ship as a file) |
+| Image reference | e.g. `ghcr.io/yourname/agblogger:v1.0` — used to tag or pull the image |
+| Caddy mode | Choose **bundled** — runs a reverse proxy alongside AgBlogger with automatic HTTPS |
+| Domain name | e.g. `myblog.com` — needed for automatic HTTPS |
+| Email address | For Let's Encrypt certificate notices (optional but recommended) |
 
 When the wizard finishes, it creates a `dist/deploy/` folder containing:
 
@@ -109,7 +111,8 @@ The compose file name depends on your setup (with or without Caddy, registry or 
 
 1. Pull the latest source on your computer and re-run `just deploy`.
 2. Copy the new `dist/deploy/` to the server, **keeping your existing `.env.production`** (it contains your secrets and credentials).
-3. Run `bash setup.sh` again.
+3. If the image tag changed, update `AGBLOGGER_IMAGE` in `.env.production` to match.
+4. Run `bash setup.sh` again.
 
 Your posts and settings are preserved across updates. The setup script automatically backs up `.env.production` before each run.
 
@@ -123,17 +126,36 @@ If you prefer to keep the full source repository on the server instead of using 
 git clone https://github.com/agblogger/agblogger
 cd agblogger
 just deploy                                      # choose "local" deployment mode
-docker compose --env-file .env.production up -d
 ```
 
-To update, pull and rebuild:
+The wizard builds the Docker image, starts the containers, and confirms they're healthy — all in one step.
+
+To update, pull the latest source and re-run the wizard:
 
 ```bash
 git pull
-docker compose --env-file .env.production up -d --build
+just deploy
 ```
 
 This approach requires Git, Python, uv, and just on the server, but avoids the copy step.
+
+---
+
+## Other deployment options
+
+The default wizard configuration uses a **bundled Caddy** reverse proxy that runs alongside AgBlogger in the same Docker Compose stack and handles HTTPS automatically. The wizard also supports two alternative Caddy modes:
+
+### External Caddy (shared reverse proxy)
+
+If your server already runs multiple web services behind a single Caddy instance — or you plan to — choose the **external** Caddy mode in the wizard. Instead of running its own Caddy container, AgBlogger joins an existing shared Caddy instance via a Docker network. Each service drops a site snippet into the shared Caddy's `sites/` directory, so you manage one Caddy container for all your domains.
+
+The setup script bootstraps the shared Caddy instance automatically if it isn't already running.
+
+### No Caddy (bring your own reverse proxy)
+
+If you already have nginx, Traefik, or another reverse proxy handling TLS, choose the **none** Caddy mode. AgBlogger's port is exposed directly (default `8000`) and you configure your existing proxy to forward traffic to it. No automatic HTTPS is provided in this mode.
+
+For full details on all wizard options, non-interactive flags, environment variables, and the complete CLI reference, see the [upstream deployment guide](https://github.com/agblogger/agblogger/blob/main/DEPLOYMENT.md).
 
 ---
 
