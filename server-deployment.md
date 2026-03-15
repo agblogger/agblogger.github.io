@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Setting Up Your Blog
+title: Deployment Guide
 nav_order: 2
 ---
 
-# Setting Up Your Blog
+# Deployment Guide
 {: .no_toc }
 
 ## Table of contents
@@ -15,99 +15,63 @@ nav_order: 2
 
 ---
 
-## Before you begin
+## Prerequisites
 
-Setting up AgBlogger requires a server. Most people use a cheap cloud server (a VPS) from a provider like DigitalOcean, Hetzner, or Linode, which typically costs a few dollars a month.
-
-You'll also need:
-
-- A **domain name** (e.g. `myblog.com`) pointing at your server
-- **Docker** installed on the server
-- The AgBlogger source repository
-
-To download the files, run these commands on the server:
-
-```bash
-git clone https://github.com/agblogger/agblogger
-cd agblogger
-```
+- A Linux server (VPS from DigitalOcean, Hetzner, Linode, etc.)
+- [Docker](https://docs.docker.com/engine/install/) and Docker Compose
+- [just](https://github.com/casey/just) command runner
+- A domain name pointing at your server (optional)
 
 ---
 
-## Running the setup wizard
+## Setup wizard
 
-AgBlogger includes a setup wizard that asks you a few simple questions and configures everything automatically. Run it with:
+`just deploy` runs an interactive wizard that generates `.env.production` with your configuration.
 
-```bash
-just deploy
-```
-
-The wizard will ask you for:
-
-| Question | What to enter |
+| Prompt | Details |
 |---|---|
 | Admin username | The username you'll log in with |
 | Admin display name | Your name as it appears on the blog |
-| Admin password | A strong password for your account (at least 8 characters) |
-| Your domain name | e.g. `myblog.com` (leave blank for local-only access) |
-| Email address | For TLS certificate notices — only asked if you enter a domain name (optional but recommended) |
+| Admin password | A strong password (at least 8 characters) |
+| Domain name | e.g. `myblog.com` — leave blank for local-only access |
+| Email address | For TLS certificate notices — only prompted if a domain is set |
 
-When it's done, start your blog:
+Start the server after the wizard completes:
 
 ```bash
 docker compose --env-file .env.production up -d
 ```
 
-Your blog is now running. Visit `https://your-domain/login` (or `http://localhost` if you skipped the domain) and sign in with the username and password you chose.
+Visit `https://your-domain` (or `http://localhost`) and log in.
 
 ---
 
-## Logging in for the first time
-
-After the server starts, open your blog's address in a browser and sign in with the admin credentials you set during setup.
-
-If you ever forget your password, ask whoever manages your server for help — they can reset it by updating the admin password in the server's configuration file (`.env.production`) and recreating the admin account.
-
----
-
-## Keeping things running
-
-A few useful commands if you ever need to manage the server:
+## Docker management
 
 ```bash
-# See if everything is running
-docker compose --env-file .env.production ps
-
-# View the server log (useful for troubleshooting)
-docker compose --env-file .env.production logs -f
-
-# Stop the server
-docker compose --env-file .env.production down
-
-# Start it back up
-docker compose --env-file .env.production up -d
+docker compose --env-file .env.production ps        # status
+docker compose --env-file .env.production logs -f    # logs
+docker compose --env-file .env.production down       # stop
+docker compose --env-file .env.production up -d      # start
 ```
 
 ---
 
-## Updating AgBlogger
+## Updating
 
-To update AgBlogger to the latest version, run these commands on the server from the `agblogger` directory:
+From the `agblogger` directory on the server:
 
 ```bash
 git pull
 docker compose --env-file .env.production up -d --build
 ```
 
-This downloads the latest code, rebuilds the application, and restarts it. Your posts and settings are preserved.
+Your posts and settings are preserved across updates.
 
 ---
 
-## What's next?
+## Password reset
 
-Your blog is up and running. Here's what you can do now:
+The admin account is created on first startup from the credentials in `.env.production`. Restarting the server does **not** reset the password.
 
-- **Write your first post** — log in and start writing from the web interface
-- **[Set up the sync tool]({% link sync-cli.md %})** — write posts offline from your computer and sync them to your blog
-- **[Connect social accounts]({% link cross-posting.md %})** — share posts to Bluesky, Mastodon, X, and Facebook
-- **Invite other writers** — create invite codes from the admin panel so others can join your blog
+To reset a forgotten admin password: update `ADMIN_PASSWORD` in `.env.production`, delete the admin user from the database, and restart the server.
