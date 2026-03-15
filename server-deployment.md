@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Deployment Guide
+title: Deployment
 nav_order: 2
 ---
 
-# Deployment Guide
+# Deployment
 {: .no_toc }
 
 ## Table of contents

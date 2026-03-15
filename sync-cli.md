@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Sync Tool Guide
+title: Sync Tool
 nav_order: 3
 ---
 
-# Sync Tool Guide
+# Sync Tool
 {: .no_toc }
 
 ## Table of contents

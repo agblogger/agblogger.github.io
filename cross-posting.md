@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Cross-Posting Guide
+title: Cross-Posting
 nav_order: 4
 ---
 
-# Cross-Posting Guide
+# Cross-Posting
 {: .no_toc }
 
 ## Table of contents
