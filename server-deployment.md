@@ -53,7 +53,7 @@ The wizard prompts you for:
 |---|---|
 | Admin username | The username you'll log in with |
 | Admin display name | Your name as it appears on the blog |
-| Admin password | Initial admin password, stored server-side in plaintext. Change after first login |
+| Admin password | Bootstrap password, stored server-side in plaintext. Change after first login |
 | Deployment mode | Choose **tarball** (ship as a file), **registry** (pull from container registry), or **local** (deploy locally) |
 | Image reference | e.g. `agblogger:latest` — used to tag or pull the image |
 | Caddy mode | Choose **bundled** (reverse proxy with automatic HTTPS), **external** (shared Caddy instance), or **none** (bring your own proxy) |
@@ -63,10 +63,11 @@ The wizard prompts you for:
 When the wizard finishes, it creates a `dist/deploy/` folder containing:
 
 - `setup.sh` — a script that sets everything up on the server
+- `DEPLOY-REMOTE.md` — server management commands for your configuration
 - `.env.production.generated` — your credentials and configuration (renamed to `.env.production` on first run by `setup.sh`)
 - Docker Compose and Caddyfile configs (with `.generated` suffix, renamed by `setup.sh` on the server)
-- `DEPLOY-REMOTE.md` — server management commands for your configuration
-- `goatcounter/` — entrypoint script for the analytics sidecar
+- `agblogger-image.tar.gz` — the Docker image (tarball mode only; in registry mode the image is pulled on the server)
+- `goatcounter/` — analytics sidecar configuration
 - `content/` — empty seed directory for the content volume
 - `VERSION` — version marker for upgrade tracking
 
@@ -91,7 +92,7 @@ bash setup.sh
 
 The script loads the Docker image, starts the services, sets up the reverse proxy (if configured), and waits for a health check to confirm everything is running.
 
-Visit `https://your-domain` and log in.
+Visit `https://your-domain` and log in. Change your password after first login.
 
 ---
 
@@ -164,6 +165,6 @@ For full details on all wizard options, non-interactive flags, environment varia
 
 ## Password reset
 
-The admin account is created on first startup from the credentials in `.env.production`. Restarting the server does not reset the password.
+`ADMIN_PASSWORD` in `.env.production` is a bootstrap password. On each startup, the server resets the admin password to this value. Change your password through the web UI after each restart.
 
-To reset a forgotten admin password: update `ADMIN_PASSWORD` in `.env.production` and restart the server. The password is re-synced from the environment on each startup.
+To reset a forgotten password, restart the server — the bootstrap password becomes valid again.
