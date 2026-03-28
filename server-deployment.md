@@ -62,12 +62,10 @@ When the wizard finishes, it creates a `dist/deploy/` folder containing:
 
 - `setup.sh` — a script that sets everything up on the server
 - `DEPLOY-REMOTE.md` — server management commands for your configuration
+- `agblogger-image.tar.gz` — the Docker image (tarball mode only; in registry mode the image is pulled on the server)
 - `.env.production.generated` — your credentials and configuration (renamed to `.env.production` on first run by `setup.sh`)
 - Docker Compose and Caddyfile configs (with `.generated` suffix, renamed by `setup.sh` on the server)
-- `agblogger-image.tar.gz` — the Docker image (tarball mode only; in registry mode the image is pulled on the server)
 - `goatcounter/` — analytics sidecar configuration
-- `content/` — empty seed directory for the content volume
-- `VERSION` — version marker for upgrade tracking
 
 ---
 
