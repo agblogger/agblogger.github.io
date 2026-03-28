@@ -63,6 +63,7 @@ The `index.md` file is a Markdown file with optional front matter at the top:
 ```markdown
 ---
 title: My Post Title
+subtitle: An optional subtitle
 labels:
   - "#cooking"
   - "#recipes"
@@ -88,4 +89,4 @@ A conflict only occurs when the automatic merge fails (for example, when both si
 
 ## Authentication
 
-When you run a command, you'll be prompted for your username and password. You can also authenticate with a Personal Access Token via the `--pat` flag or `AGBLOGGER_PAT` environment variable.
+When you run a command, you'll be prompted for your username and password.

@@ -12,12 +12,12 @@ A self-hosted, Markdown-first blogging platform. Write in any editor, organize w
 
 ## Features
 
-- **Write in Markdown** — posts are Markdown `.md` files you can create in any text editor. AgBlogger provides a convenient Web editor with instant preview.
+- **Write in Markdown** — posts are [Markdown](https://www.markdownguide.org/getting-started/) `.md` files you can create in any text editor. AgBlogger provides a convenient Web editor with instant preview.
 - **Organize with labels** — group your posts with labels and browse them in a visual label map.
 - **Share to social media** — publish a post to Bluesky, Mastodon, X (Twitter), and Facebook in one click.
 - **Search everything** — find any post instantly by searching its title, content, or labels.
 - **Sync from your computer** — keep a folder on your computer in sync with your blog, so you always have a local backup.
-- **Invite collaborators** — share your blog with other writers using invite codes.
+- **Track analytics** — see view counts on posts and browse traffic stats in the admin dashboard.
 
 ---
 
@@ -31,7 +31,7 @@ Requirements: [just](https://github.com/casey/just) and [uv](https://docs.astral
 git clone https://github.com/agblogger/agblogger
 cd agblogger
 just deploy                                        # interactive setup wizard
-scp -r dist/deploy/ user@your-server:~/agblogger   # copy bundle to server
+rsync -av dist/deploy/ user@your-server:~/agblogger/ # copy bundle to server
 ```
 
 Then on the server:

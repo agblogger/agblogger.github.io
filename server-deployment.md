@@ -26,7 +26,7 @@ You run an interactive setup wizard on your computer. The wizard asks for your a
 **On your computer** (where you run the wizard):
 
 - [Git](https://git-scm.com/)
-- [Python 3.12+](https://www.python.org/) and [uv](https://docs.astral.sh/uv/)
+- [Python 3.14+](https://www.python.org/) and [uv](https://docs.astral.sh/uv/)
 - [just](https://github.com/casey/just) command runner
 
 **On your server:**
@@ -53,26 +53,29 @@ The wizard prompts you for:
 |---|---|
 | Admin username | The username you'll log in with |
 | Admin display name | Your name as it appears on the blog |
-| Admin password | A strong password |
-| Deployment mode | Choose **registry** (pull from container registry) or **tarball** (ship as a file) |
-| Image reference | e.g. `ghcr.io/yourname/agblogger:v1.0` — used to tag or pull the image |
-| Caddy mode | Choose **bundled** — runs a reverse proxy alongside AgBlogger with automatic HTTPS |
+| Admin password | Initial admin password, stored server-side in plaintext. Change after first login |
+| Deployment mode | Choose **tarball** (ship as a file), **registry** (pull from container registry), or **local** (deploy locally) |
+| Image reference | e.g. `agblogger:latest` — used to tag or pull the image |
+| Caddy mode | Choose **bundled** (reverse proxy with automatic HTTPS), **external** (shared Caddy instance), or **none** (bring your own proxy) |
 | Domain name | e.g. `myblog.com` — needed for automatic HTTPS |
 | Email address | For Let's Encrypt certificate notices (optional but recommended) |
 
 When the wizard finishes, it creates a `dist/deploy/` folder containing:
 
-- `.env.production` — your credentials and configuration
-- Docker Compose files
 - `setup.sh` — a script that sets everything up on the server
-- A `DEPLOY-REMOTE.md` with server management info
+- `.env.production.generated` — your credentials and configuration (renamed to `.env.production` on first run by `setup.sh`)
+- Docker Compose and Caddyfile configs (with `.generated` suffix, renamed by `setup.sh` on the server)
+- `DEPLOY-REMOTE.md` — server management commands for your configuration
+- `goatcounter/` — entrypoint script for the analytics sidecar
+- `content/` — empty seed directory for the content volume
+- `VERSION` — version marker for upgrade tracking
 
 ---
 
 ## Step 2: Copy to the server
 
 ```bash
-scp -r dist/deploy/ user@your-server:~/agblogger
+rsync -av dist/deploy/ user@your-server:~/agblogger/
 ```
 
 ---
@@ -110,11 +113,11 @@ The compose file name depends on your setup (with or without Caddy, registry or 
 ## Updating
 
 1. Pull the latest source on your computer and re-run `just deploy`.
-2. Copy the new `dist/deploy/` to the server, **keeping your existing `.env.production`** (it contains your secrets and credentials).
+2. Copy the new bundle to the server.
 3. If the image tag changed, update `AGBLOGGER_IMAGE` in `.env.production` to match.
 4. Run `bash setup.sh` again.
 
-Your posts and settings are preserved across updates. The setup script automatically backs up `.env.production` before each run.
+Your posts, database, and `.env.production` are preserved across updates — `setup.sh` never overwrites them. Compose and Caddy config files are backed up as `.bak` files before being replaced.
 
 ---
 
@@ -163,4 +166,4 @@ For full details on all wizard options, non-interactive flags, environment varia
 
 The admin account is created on first startup from the credentials in `.env.production`. Restarting the server does not reset the password.
 
-To reset a forgotten admin password: update `ADMIN_PASSWORD` in `.env.production`, delete the admin user from the database, and restart the server.
+To reset a forgotten admin password: update `ADMIN_PASSWORD` in `.env.production` and restart the server. The password is re-synced from the environment on each startup.
