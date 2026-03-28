@@ -51,7 +51,7 @@ Each post lives in its own directory inside `posts/`. The directory contains an 
 
 ```text
 posts/
-└── 2026-03-01-example-post/
+└── example-post/
     ├── index.md
     └── diagram.png
 ```

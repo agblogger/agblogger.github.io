@@ -27,9 +27,10 @@ A self-hosted, Markdown-first blogging platform. Write in any editor, organize w
 
 Requirements: [just](https://github.com/casey/just) and [uv](https://docs.astral.sh/uv/) on your computer, [Docker](https://docs.docker.com/engine/install/) on your server.
 
+Download and extract the latest release source from the [releases page](https://github.com/agblogger/agblogger/releases), then:
+
 ```bash
-git clone https://github.com/agblogger/agblogger
-cd agblogger
+cd agblogger-X.Y.Z
 just deploy                                        # interactive setup wizard
 rsync -av dist/deploy/ user@your-server:~/agblogger/ # copy bundle to server
 ```
@@ -53,7 +54,7 @@ The sync tool keeps a local folder of Markdown files in sync with your blog. Dow
 agblogger init --dir ~/blog --server https://your-server.com   # one-time setup
 ```
 
-Write posts as `index.md` files in dedicated post folders inside the `posts/` folder, e.g., in `posts/2026-03-11-my-first-post/index.md`:
+Write posts as `index.md` files in dedicated post folders inside the `posts/` folder, e.g., in `posts/my-first-post/index.md`:
 
 ```markdown
 ---

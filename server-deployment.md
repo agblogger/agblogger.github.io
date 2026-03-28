@@ -25,7 +25,6 @@ You run an interactive setup wizard on your computer. The wizard asks for your a
 
 **On your computer** (where you run the wizard):
 
-- [Git](https://git-scm.com/)
 - [Python 3.14+](https://www.python.org/) and [uv](https://docs.astral.sh/uv/)
 - [just](https://github.com/casey/just) command runner
 
@@ -39,11 +38,10 @@ You run an interactive setup wizard on your computer. The wizard asks for your a
 
 ## Step 1: Generate the deployment bundle
 
-Clone the repository on your computer and run the setup wizard:
+Download and extract the latest release source from the [releases page](https://github.com/agblogger/agblogger/releases), then run the setup wizard:
 
 ```bash
-git clone https://github.com/agblogger/agblogger
-cd agblogger
+cd agblogger-X.Y.Z
 just deploy
 ```
 
@@ -113,7 +111,7 @@ The compose file name depends on your setup (with or without Caddy, registry or 
 
 ## Updating
 
-1. Pull the latest source on your computer and re-run `just deploy`.
+1. Download and extract the new release from the [releases page](https://github.com/agblogger/agblogger/releases) and re-run `just deploy`.
 2. Copy the new bundle to the server.
 3. If the image tag changed, update `AGBLOGGER_IMAGE` in `.env.production` to match.
 4. Run `bash setup.sh` again.
@@ -124,24 +122,18 @@ Your posts, database, and `.env.production` are preserved across updates — `se
 
 ## Deploying from source on the server
 
-If you prefer to keep the full source repository on the server instead of using a deployment bundle, you can run the wizard directly on the server:
+If you prefer to build and run directly on the server instead of using a deployment bundle, download and extract the latest release source on the server and run the wizard there:
 
 ```bash
-git clone https://github.com/agblogger/agblogger
-cd agblogger
+cd agblogger-X.Y.Z
 just deploy                                      # choose "local" deployment mode
 ```
 
 The wizard builds the Docker image, starts the containers, and confirms they're healthy — all in one step.
 
-To update, pull the latest source and re-run the wizard:
+To update, download the new release and re-run the wizard.
 
-```bash
-git pull
-just deploy
-```
-
-This approach requires Git, Python, uv, and just on the server, but avoids the copy step.
+This approach requires Python, uv, and just on the server, but avoids the copy step.
 
 ---
 
