@@ -80,3 +80,7 @@ See the [sync tool guide]({% link sync-cli.md %}) for post format details, confl
 ### Cross-posting
 
 Connect social accounts under **Admin → Social** in the web UI, then cross-post from any published post's editor. See the [cross-posting guide]({% link cross-posting.md %}).
+
+### Analytics
+
+View traffic stats and per-post view counts under **Admin → Analytics**. Powered by a self-hosted, cookie-free [GoatCounter](https://www.goatcounter.com/) sidecar. See the [analytics guide]({% link analytics.md %}).
