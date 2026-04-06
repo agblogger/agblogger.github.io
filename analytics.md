@@ -30,10 +30,10 @@ Analytics is a soft dependency — your blog serves content normally even if the
 
 Open **Admin → Analytics** to access the dashboard. It includes:
 
-- **Summary cards** — total page views, unique visitors, and top page for the selected period
+- **Summary cards** — total page views and top page for the selected period
 - **Views over time** — area chart of daily views and visitors
 - **Top pages** — sortable table of paths by view count; click a row to see its referrer sources and a per-page views chart
-- **Breakdowns** — horizontal bar charts for browsers, operating systems, languages, locations, screen sizes, and campaigns (browsers and OSes support version drill-down)
+- **Breakdowns** — horizontal bar charts for browsers, operating systems, languages, locations, screen sizes, and campaigns.
 
 Use the date-range selector at the top to switch between 7-day, 30-day, and 90-day presets or pick a custom range.
 
@@ -47,12 +47,6 @@ You can optionally show a view count on each published post's public page.
 2. Enable **Show views on posts**
 
 When enabled, each published post displays its visitor count. Drafts and unpublished posts never expose counts.
-
----
-
-## CSV export
-
-From the dashboard, click **Export CSV** to download your raw analytics data. The export runs asynchronously — the button shows progress and lets you download the file once it's ready.
 
 ---
 
