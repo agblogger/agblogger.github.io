@@ -15,9 +15,9 @@ A self-hosted, Markdown-first blogging platform. Write in any editor, organize w
 - **Write in Markdown** — posts are [Markdown](https://www.markdownguide.org/getting-started/) `.md` files you can create in any text editor. AgBlogger provides a convenient Web editor with instant preview.
 - **Organize with labels** — group your posts with labels and browse them in a visual label map.
 - **Share to social media** — publish a post to Bluesky, Mastodon, X (Twitter), and Facebook in one click.
-- **Email subscriptions** — readers subscribe to get new posts in their inbox. Delivery runs through [Resend](https://resend.com); no subscriber emails are stored on your server.
-- **Search** — find posts title, content, or labels.
+- **Search and discovery** — find posts by title, content, or labels.
 - **Sync from your computer** — keep a folder on your computer in sync with your blog, so you always have a local backup.
+- **Email subscriptions** — readers subscribe to get new posts in their inbox.
 - **Track analytics** — see view counts on posts and browse traffic stats in the admin dashboard.
 
 ---
