@@ -89,4 +89,11 @@ A conflict only occurs when the automatic merge fails (for example, when both si
 
 ## Authentication
 
-When you run a command, you'll be prompted for your username and password.
+You log in once; the sync tool stores a session token in your user config directory (per server) and reuses it on later runs, so you won't be prompted again. If the stored session expires, you'll be asked for your password and a new session is saved.
+
+```bash
+agblogger login --dir ~/blog     # log in and store a session
+agblogger logout --dir ~/blog    # revoke and delete the stored session
+```
+
+Running `login` explicitly is optional — `status` and `sync` prompt you to log in the first time if no session is stored.
