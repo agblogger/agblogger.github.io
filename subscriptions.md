@@ -44,7 +44,7 @@ On first enable, AgBlogger automatically creates the contact list in Resend and 
 {: .note }
 If the webhook can't be registered (for example, the blog isn't reachable over HTTPS yet), subscriptions still work fully; the admin panel shows a warning that unsubscribed contacts won't be auto-deleted from Resend, and registration is retried on later settings saves.
 
-Once enabled, a **Subscribe** button appears in the blog header, linking to the public subscribe page at `/subscribe`.
+Once enabled, a **Subscribe** button appears in the blog header, linking to the public subscribe page.
 
 To verify everything works, use **Send test email** in the admin panel to send yourself a sample broadcast.
 
@@ -71,7 +71,7 @@ Email clients can't run the JavaScript used for math rendering on the web, so La
 
 - **No subscriber data on your server** — email addresses live only in Resend; AgBlogger stores none, and the subscribe endpoint never reveals whether an address is already subscribed.
 - **Deletion on unsubscribe** — with the webhook registered, unsubscribed contacts are permanently deleted from Resend.
-- **Optional GDPR fields** — controller name, contact, privacy policy URL, and postal address can be set in the admin panel; whatever you fill in is shown in the consent notice on the subscribe page.
+- **Optional GDPR fields** — controller name, contact, privacy policy URL, and postal address can be set in the admin panel.
 - **Built-in privacy policy** — if you haven't created your own privacy page, AgBlogger serves a generated policy covering the subscription data processing, linked discreetly from the site footer while subscriptions are enabled.
 
 {: .important }
