@@ -26,7 +26,7 @@ A self-hosted, Markdown-first blogging platform. Write in any editor, organize w
 
 ### Deploy
 
-Requirements: [just](https://github.com/casey/just) and [uv](https://docs.astral.sh/uv/) on your computer, [Docker](https://docs.docker.com/engine/install/) on your server.
+Requirements: [just](https://github.com/casey/just) and [uv](https://docs.astral.sh/uv/) on your computer, [Docker](https://docs.docker.com/engine/install/) on your computer and server.
 
 Download and extract the latest release source from the [releases page](https://github.com/agblogger/agblogger/releases), then:
 

@@ -27,6 +27,7 @@ You run an interactive setup wizard on your computer. The wizard asks for your a
 
 - [Python 3.14+](https://www.python.org/) and [uv](https://docs.astral.sh/uv/)
 - [just](https://github.com/casey/just) command runner
+- [Docker](https://docs.docker.com/desktop/)
 
 **On your server:**
 
