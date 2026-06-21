@@ -12,7 +12,7 @@ A self-hosted, Markdown-first blogging platform. Write in any editor, organize w
 
 ## Features
 
-- **Write in Markdown** — posts are [Markdown](https://www.markdownguide.org/getting-started/) `.md` files you can create in any text editor. AgBlogger provides a convenient Web editor with instant preview.
+- **Write in Markdown** — posts are [Markdown](https://www.markdownguide.org/getting-started/) `.md` files you can create in any text editor. AgBlogger also provides a convenient [web editor]({% link editor.md %}) with instant preview.
 - **Organize with labels** — group your posts with labels and browse them in a visual label map.
 - **Share to social media** — publish a post to Bluesky, Mastodon, X (Twitter), and Facebook in one click.
 - **Search and discovery** — find posts by title, content, or labels.
@@ -46,6 +46,10 @@ bash setup.sh    # starts everything, including HTTPS
 Your blog is live at `https://your-domain`. Log in with the admin credentials you provided during setup.
 
 See the [deployment guide]({% link server-deployment.md %}) for managing the server, updates, and alternative deployment methods.
+
+### Web editor
+
+Log in and write posts in the built-in web editor: Markdown on the left, an instant preview on the right, with a formatting toolbar, labels, and image uploads. See the [editor guide]({% link editor.md %}).
 
 ### Sync tool
 
